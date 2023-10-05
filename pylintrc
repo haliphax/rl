@@ -1,0 +1,11 @@
+[MASTER]
+
+[MESSAGES CONTROL]
+disable=I0011,C0103,R0903,R0913,R0914,R0916,R0912,W0401
+
+[REPORTS]
+output-format=text
+files-output=no
+reports=no
+msg-template="{path}:{line}: {msg_id} {symbol}, {obj} {msg}"
+
