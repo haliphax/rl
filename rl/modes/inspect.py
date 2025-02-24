@@ -16,7 +16,7 @@ def inspect_mode():
 
     while True:
         last = tuple(iloc)
-        transposed = (1 + g.view_dist + iloc[1] - g.charloc[1],
+        transposed = (2 + g.view_dist + iloc[1] - g.charloc[1],
                       g.view_dist + iloc[0] - g.charloc[0])
         ichar = g.maptxt[iloc[1]][iloc[0]]
         iterr = g.terrain[ichar]
@@ -34,8 +34,12 @@ def inspect_mode():
             icolor = 'black'
 
         output = t.move(0, 0)
-        output += '%s, %s Inspecting: %s%s' % (iloc[0], iloc[1], iname,
-                                               t.clear_eol)
+        output += '%s, %s Inspecting: %s%s' % (
+            iloc[0],
+            iloc[1],
+            t.bold_white(iname),
+            t.clear_eol,
+        )
         output += t.move(transposed[0], transposed[1])
         output += getattr(t, '%s_on_red' % icolor)(ichar)
         echo(output)
