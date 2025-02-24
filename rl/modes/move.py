@@ -26,6 +26,7 @@ def move_mode():
         g.bottom = min(g.map_height - 1, g.charloc[1] + g.view_dist + 1)
         g.right = min(g.map_width - 1, g.charloc[0] + g.view_dist + 1)
         # leading vertical whitespace
+        output += t.move(2, 0)
         output += (t.clear_eol + '\r\n') * (g.view_dist - g.charloc[1])
         # calculate field of vision
         do_fov()
@@ -54,7 +55,7 @@ def move_mode():
         # trailing vertical whitespace
         output += \
             (t.clear_eol + '\r\n') * (g.charloc[1] + g.view_dist - g.map_height
-                                      + 2)
+                                      + 1)
         echo(output)
 
         # user input (move, etc.)
@@ -79,6 +80,15 @@ def move_mode():
         elif k_low == 'i':
             return 'inspect'
 
+        terrain = g.terrain[g.maptxt[g.charloc[1]][g.charloc[0]]]
+
         # if we've moved to a solid block, move back
-        if g.terrain[g.maptxt[g.charloc[1]][g.charloc[0]]][0] > 0:
+        if terrain[0] > 0:
+            terrain_name = terrain[1]
+            output = t.move(1, 0)
+            output += 'Your way is blocked by a(n) %s.%s' % (
+                t.bold_white(terrain_name),
+                t.clear_eol,
+            )
+            echo(output)
             g.charloc = lastloc

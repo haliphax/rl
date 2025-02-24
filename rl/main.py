@@ -11,6 +11,7 @@ load_map('map')
 echo(t.clear())
 #path_found = path_find(charloc, (57, 5))
 charloc = (0, 0)
+last_mode = 'move'
 
 with t.hidden_cursor(), t.cbreak():
     while mode:
