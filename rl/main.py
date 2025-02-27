@@ -1,9 +1,9 @@
 "Main loop"
 
 # local
-from . import t, echo
-from .modes import *  # pylint: disable=W0614
-from .maps import load_map
+from rl import t, echo
+from rl.modes import *  # pylint: disable=W0614
+from rl.maps import load_map
 
 # main loop
 mode = 'move'

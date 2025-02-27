@@ -3,7 +3,7 @@
 # stdlib
 from heapq import heappush, heappop
 # local
-from . import g
+from rl import g
 
 
 def path_heuristic(a, b):

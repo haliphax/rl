@@ -3,7 +3,7 @@
 # stdlib
 from os.path import dirname, realpath, join
 # local
-from . import g
+from rl import g
 
 
 def load_map(name):
