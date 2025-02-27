@@ -13,6 +13,8 @@ def move_mode():
     :returns: The next mode
     """
 
+    message_fade = 0
+
     while True:
         output = t.move(0, 0)
         # display coords and current terrain
@@ -92,3 +94,9 @@ def move_mode():
             )
             echo(output)
             g.charloc = lastloc
+            message_fade = 4
+        elif message_fade > 0:
+            message_fade -= 1
+        
+        if message_fade <= 0:
+            echo("".join((t.move(1, 0), t.clear_eol)))
