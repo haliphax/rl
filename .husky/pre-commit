@@ -1,0 +1,2 @@
+npx tsx .husky/no-commit-to-main.ts
+npx lint-staged
