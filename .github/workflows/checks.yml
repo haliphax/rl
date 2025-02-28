@@ -1,0 +1,51 @@
+name: Checks
+
+on:
+  pull_request:
+    branches: [main]
+
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.branch }}
+
+jobs:
+  commitlint:
+    name: CommitLint
+    if: ${{ contains(github.event_name, 'pull_request') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: haliphax/rl/.github@main
+
+      - name: Lint pull request title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: echo "$PR_TITLE" | npx commitlint
+
+  ruff-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: haliphax/rl/.github@main
+
+      - name: Ruff check
+        run: ruff check .
+
+  ruff-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: haliphax/rl/.github@main
+
+      - name: Ruff format
+        run: ruff format .
+
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: haliphax/rl/.github@main
+
+      - name: Prettier
+        run: npx prettier -lu .
