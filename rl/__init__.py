@@ -55,6 +55,10 @@ class g(object):
     path_found = set([])
     #: path destination
     path_dest = []
+    #: viewport horizontal offset
+    offset_x = min(view_dist, viewport_width // 2)
+    #: viewport vertical offset
+    offset_y = min(view_dist, viewport_height // 2)
 
 
 def echo(txt):

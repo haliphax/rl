@@ -13,14 +13,12 @@ def inspect_mode():
     """
 
     iloc = g.charloc
-    offset_x = min(g.view_dist, g.viewport_width // 2)
-    offset_y = min(g.view_dist, g.viewport_height // 2)
 
     while True:
         last = tuple(iloc)
         transposed = (
-            2 + offset_y + iloc[1] - g.charloc[1],
-            offset_x + iloc[0] - g.charloc[0],
+            2 + g.offset_y + iloc[1] - g.charloc[1],
+            g.offset_x + iloc[0] - g.charloc[0],
         )
         ichar = g.maptxt[iloc[1]][iloc[0]]
         iterr = g.terrain[ichar]
@@ -57,33 +55,33 @@ def inspect_mode():
         elif (
             (k.code == t.KEY_LEFT or k in ("4", "h"))
             and iloc[0] - g.left > 0
-            and abs(iloc[0] - g.charloc[0]) < offset_x
+            and abs(iloc[0] - g.charloc[0]) < g.offset_x
         ):
             iloc = (iloc[0] - 1, iloc[1])
         elif (
             (k.code == t.KEY_RIGHT or k in ("6", "l"))
             and iloc[0] < g.map_width - 1
             and g.right - iloc[0] > 1
-            and abs(iloc[0] - g.charloc[0]) < offset_x
+            and abs(iloc[0] - g.charloc[0]) < g.offset_x
         ):
             iloc = (iloc[0] + 1, iloc[1])
         elif (
             (k.code == t.KEY_UP or k in ("8", "k"))
             and iloc[1] - g.top > 0
-            and abs(iloc[1] - g.charloc[1]) <= offset_y
+            and abs(iloc[1] - g.charloc[1]) <= g.offset_y
         ):
             iloc = (iloc[0], iloc[1] - 1)
         elif (
             (k.code == t.KEY_DOWN or k in ("2", "j"))
             and iloc[1] < g.map_height - 1
             and g.bottom - iloc[1] > 1
-            and abs(iloc[1] - g.charloc[1]) <= offset_y
+            and abs(iloc[1] - g.charloc[1]) <= g.offset_y
         ):
             iloc = (iloc[0], iloc[1] + 1)
 
         # if they've moved beyond the view distance, move back
         if (
-            abs(iloc[0] - g.charloc[0]) >= offset_x
-            or abs(iloc[1] - g.charloc[1]) > offset_y
+            abs(iloc[0] - g.charloc[0]) >= g.offset_x
+            or abs(iloc[1] - g.charloc[1]) > g.offset_y
         ):
             iloc = tuple(last)

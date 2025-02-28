@@ -26,15 +26,13 @@ def move_mode():
             t.clear_eol,
         )
         # viewport
-        offset_x = min(g.view_dist, g.viewport_width // 2)
-        offset_y = min(g.view_dist, g.viewport_height // 2)
-        g.top = max(0, g.charloc[1] - offset_y)
-        g.left = max(0, g.charloc[0] - offset_x)
-        g.bottom = min(g.map_height - 1, g.charloc[1] + offset_y + 1)
-        g.right = min(g.map_width - 1, g.charloc[0] + offset_x + 1)
+        g.top = max(0, g.charloc[1] - g.offset_y)
+        g.left = max(0, g.charloc[0] - g.offset_x)
+        g.bottom = min(g.map_height - 1, g.charloc[1] + g.offset_y + 1)
+        g.right = min(g.map_width - 1, g.charloc[0] + g.offset_x + 1)
         # leading vertical whitespace
         output += t.move(2, 0)
-        output += (t.clear_eol + "\r\n") * (offset_y - g.charloc[1])
+        output += (t.clear_eol + "\r\n") * (g.offset_y - g.charloc[1])
         # calculate field of vision
         do_fov()
 
@@ -42,7 +40,7 @@ def move_mode():
         for y, line in enumerate(g.maptxt[g.top : g.bottom], start=g.top):
             output += t.clear_eol
             # leading horizontal whitespace
-            output += " " * (offset_x - g.charloc[0])
+            output += " " * (g.offset_x - g.charloc[0])
 
             for x, char in enumerate(line[g.left : g.right], start=g.left):
                 if (x, y) == g.charloc:
@@ -62,7 +60,7 @@ def move_mode():
 
         # trailing vertical whitespace
         output += (t.clear_eol + "\r\n") * (
-            g.charloc[1] + offset_y - g.map_height + 1
+            g.charloc[1] + g.offset_y - g.map_height + 1
         ) + t.clear_eol
         echo(output)
 
