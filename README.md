@@ -46,7 +46,8 @@ pip install -e .[dev]
 
 ### Play
 
-If you just want to run the game, you will first need Python 3.12.1.
+If you just want to run the game, you will first need Python 3.12.1. You can
+either use your system Python, create a virtual environment, or use docker.
 
 <details>
 <summary>Virtual environment setup</summary>
@@ -65,11 +66,31 @@ pyenv activate rl
 
 </details>
 
-Install dependencies:
+For both system Python and virtual environments, you must install dependencies:
 
 ```shell
 pip install .
 ```
+
+<details>
+<summary>Docker</summary>
+
+<br />
+
+To run the application in a docker container, first build the image:
+
+```shell
+docker build -t rl:latest .
+```
+
+Then run a container using the image rather than using the standard
+execution instructions:
+
+```shell
+docker run --rm -it rl
+```
+
+</details>
 
 ## Execute
 
