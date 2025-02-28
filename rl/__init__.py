@@ -44,7 +44,11 @@ class g(object):
     #: viewport right
     right = 0
     #: view distance from character's position
-    view_dist = 11
+    view_dist = 35
+    #: viewport height
+    viewport_height = 23
+    #: viewport width
+    viewport_width = 80
     #: field of view
     fov = []
     #: pathfinding result
