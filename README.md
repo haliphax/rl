@@ -2,6 +2,8 @@
 
 Is roguelike, yes?
 
+![Screenshot](https://github.com/haliphax/rl/blob/assets/screenshot.jpg?raw=true)
+
 ## Setup
 
 ### Develop
