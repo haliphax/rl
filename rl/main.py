@@ -1,9 +1,10 @@
 "Main loop"
 
 # local
-from . import t, echo
+from . import g, t, echo
 from .maps import load_map
 from .modes import inspect_mode, move_mode
+from .paths import path_find
 
 # so ruff won't remove unused imports; these are used dynamically
 (inspect_mode, move_mode)
@@ -14,8 +15,7 @@ def main():
     mode = "move"
     load_map("map")
     echo(t.clear())
-    # charloc = (0, 0)
-    # path_found = path_find(charloc, (57, 5))
+    g.path_found = path_find(g.charloc, (26, 13))
     last_mode = "move"
 
     with t.hidden_cursor(), t.cbreak():

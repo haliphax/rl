@@ -34,7 +34,7 @@ class g(object):
     #: terrain definitions
     terrain = {}
     #: character location
-    charloc = (0, 0)
+    charloc = (42, 11)
     #: viewport top
     top = 0
     #: viewport left
@@ -52,7 +52,9 @@ class g(object):
     #: field of view
     fov = []
     #: pathfinding result
-    path_found = []
+    path_found = set([])
+    #: path destination
+    path_dest = []
 
 
 def echo(txt):

@@ -3,6 +3,7 @@
 # local
 from .. import g, t, echo
 from ..fov import do_fov
+from ..paths import path_find
 
 
 def move_mode():
@@ -47,11 +48,12 @@ def move_mode():
                 if (x, y) == g.charloc:
                     # character's position
                     output += t.bold_white("@")
-                elif (x, y) in g.path_found:
-                    output += t.bold_red("*")
                 elif g.fov[y - g.top][x - g.left] == 1:
                     # visible
-                    output += getattr(t, g.terrain[char][2])(char)
+                    if (x, y) in g.path_found:
+                        output += t.bold_red("*")
+                    else:
+                        output += getattr(t, g.terrain[char][2])(char)
                 else:
                     # not visible
                     output += " "
@@ -104,3 +106,6 @@ def move_mode():
 
         if message_fade <= 0:
             echo("".join((t.move(1, 0), t.clear_eol)))
+
+        if len(g.path_found):
+            g.path_found = path_find(g.charloc, g.path_dest)

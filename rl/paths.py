@@ -25,6 +25,8 @@ def path_find(start, goal):
     :returns: A set of coordinates that make up the path
     """
 
+    g.path_dest = goal
+
     neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     # (1, 1), (1, -1), (-1, 1), (-1, -1)] if we allowed moving diagonally...
     close_set = set()
