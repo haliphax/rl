@@ -77,18 +77,16 @@ pip install .
 
 <br />
 
-To run the application in a docker container, first build the image:
+To run the application in a docker container, build the image:
 
 ```shell
 docker build -t rl:latest .
 ```
 
-Then run a container using the image rather than using the standard
-execution instructions:
-
-```shell
-docker run --rm -it rl
-```
+This image will need to be rebuilt any time `pyproject.toml` or requirements
+are changed. Code/map changes will be reflected when running with live code (as
+described below), otherwise the image will need to be rebuilt to incorporate
+code/map changes, as well.
 
 </details>
 
@@ -99,6 +97,25 @@ Run the installed Python module:
 ```shell
 python -m rl
 ```
+
+<details>
+<summary>Docker</summary>
+
+<br />
+
+Run a container using the previously-built image code/map files:
+
+```shell
+docker run --rm -it rl
+```
+
+Run a container with live code/map files (to test changes):
+
+```shell
+docker run --rm -it -v $(pwd)/rl:/app/rl rl
+```
+
+</details>
 
 [`nvm`]: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
 [`pyenv`]: https://github.com/pyenv/pyenv/blob/master/README.md#installation
