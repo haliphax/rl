@@ -3,6 +3,10 @@
 # local
 from . import t, echo
 from .maps import load_map
+from .modes import inspect_mode, move_mode
+
+# so ruff won't remove unused imports; these are used dynamically
+(inspect_mode, move_mode)
 
 
 def main():
