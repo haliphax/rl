@@ -50,7 +50,7 @@ If you just want to run the game, you will first need Python 3.12.1. You can
 either use your system Python, create a virtual environment, or use docker.
 
 <details>
-<summary>Virtual environment setup</summary>
+<summary>Virtual environment setup (recommended)</summary>
 
 <br />
 
@@ -91,6 +91,12 @@ code/map changes, as well.
 </details>
 
 ## Execute
+
+If using a virtual environment, activate it (ex. pyenv):
+
+```shell
+pyenv activate rl
+```
 
 Run the installed Python module:
 
