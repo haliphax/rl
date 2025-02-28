@@ -2,6 +2,7 @@
 
 # stdlib
 from heapq import heappush, heappop
+
 # local
 from rl import g
 
@@ -49,8 +50,9 @@ def path_find(start, goal):
 
         for i, j in neighbors:
             neighbor = current[0] + i, current[1] + j
-            tentative_g_score = gscore[current] + path_heuristic(current,
-                                                                 neighbor)
+            tentative_g_score = gscore[current] + path_heuristic(
+                current, neighbor
+            )
 
             if 0 <= neighbor[0] < g.map_width:
                 if 0 <= neighbor[1] < g.map_height:
@@ -63,16 +65,19 @@ def path_find(start, goal):
                 # array bound x walls
                 continue
 
-            if (neighbor in close_set and
-                    tentative_g_score >= gscore.get(neighbor, 0)):
+            if neighbor in close_set and tentative_g_score >= gscore.get(
+                neighbor, 0
+            ):
                 continue
 
-            if (tentative_g_score < gscore.get(neighbor, 0) or
-                    neighbor not in [i[1]for i in oheap]):
+            if tentative_g_score < gscore.get(neighbor, 0) or neighbor not in [
+                i[1] for i in oheap
+            ]:
                 came_from[neighbor] = current
                 gscore[neighbor] = tentative_g_score
-                fscore[neighbor] = tentative_g_score + path_heuristic(neighbor,
-                                                                      goal)
+                fscore[neighbor] = tentative_g_score + path_heuristic(
+                    neighbor, goal
+                )
                 heappush(oheap, (fscore[neighbor], neighbor))
 
     return set([])

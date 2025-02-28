@@ -16,7 +16,7 @@ def do_fov():
         [1, 0, 0, -1, -1, 0, 0, 1],
         [0, 1, -1, 0, 0, -1, 1, 0],
         [0, 1, 1, 0, 0, -1, -1, 0],
-        [1, 0, 0, 1, -1, 0, 0, -1]
+        [1, 0, 0, 1, -1, 0, 0, -1],
     ]
 
     g.fov = []
@@ -46,15 +46,24 @@ def do_fov():
                 # Translate the dx, dy coordinates into map coordinates:
                 X, Y = cx + dx * xx + dy * xy, cy + dx * yx + dy * yy
 
-                if (Y < g.top or Y < 0 or Y > g.bottom or Y >= g.map_height or
-                        X < g.left or X < 0 or X > g.right
-                        or X >= g.map_width):
+                if (
+                    Y < g.top
+                    or Y < 0
+                    or Y > g.bottom
+                    or Y >= g.map_height
+                    or X < g.left
+                    or X < 0
+                    or X > g.right
+                    or X >= g.map_width
+                ):
                     continue
 
                 # l_slope and r_slope store the slopes of the left and right
                 # extremities of the square we're considering:
-                l_slope, r_slope = (dx - 0.5) / (dy + 0.5), \
-                                   (dx + 0.5) / (dy - 0.5)
+                l_slope, r_slope = (
+                    (dx - 0.5) / (dy + 0.5),
+                    (dx + 0.5) / (dy - 0.5),
+                )
 
                 if start < r_slope:
                     continue
@@ -74,10 +83,11 @@ def do_fov():
                             blocked = False
                             start = new_start
                     elif g.terrain[g.maptxt[Y][X]][0] == 1 and j < g.view_dist:
-                            # This is a blocking square, start a child scan:
+                        # This is a blocking square, start a child scan:
                         blocked = True
-                        cast_light(cx, cy, j + 1, start, l_slope,
-                                   xx, xy, yx, yy)
+                        cast_light(
+                            cx, cy, j + 1, start, l_slope, xx, xy, yx, yy
+                        )
                         new_start = r_slope
 
             # Row is scanned; do next row unless last square was blocked:
@@ -85,6 +95,14 @@ def do_fov():
                 break
 
     for octant in range(8):
-        cast_light(g.charloc[0], g.charloc[1], 1, 1.0, 0.0,
-                   mult[0][octant], mult[1][octant],
-                   mult[2][octant], mult[3][octant])
+        cast_light(
+            g.charloc[0],
+            g.charloc[1],
+            1,
+            1.0,
+            0.0,
+            mult[0][octant],
+            mult[1][octant],
+            mult[2][octant],
+            mult[3][octant],
+        )

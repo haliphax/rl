@@ -9,10 +9,16 @@ t = None
 x84 = None
 
 try:
-    x84 = __import__('x84.bbs', fromlist=('getterminal', 'echo',))
+    x84 = __import__(
+        "x84.bbs",
+        fromlist=(
+            "getterminal",
+            "echo",
+        ),
+    )
     t = x84.getterminal()
 except ImportError:
-    blessed = __import__('blessed', fromlist=('Terminal',))
+    blessed = __import__("blessed", fromlist=("Terminal",))
     t = blessed.Terminal()
 
 

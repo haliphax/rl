@@ -2,6 +2,7 @@
 
 # stdlib
 from os.path import dirname, realpath, join
+
 # local
 from rl import g
 
@@ -27,21 +28,25 @@ def load_map(name):
     done_reading_terrain = False
     g.maptxt = []
 
-    with open(join(dirname(realpath(__file__)), 'mapfiles/%s.txt' % name)) \
-            as mapfile:
+    with open(
+        join(dirname(realpath(__file__)), "mapfiles/%s.txt" % name)
+    ) as mapfile:
         for line in mapfile.readlines():
             stripped = line.rstrip()
 
             # blank line separates terrain definitions from actual map contents
-            if stripped == '' and not done_reading_terrain:
+            if stripped == "" and not done_reading_terrain:
                 done_reading_terrain = True
                 continue
 
             if not done_reading_terrain:
                 # read terrian definitions
-                terrain_name, terrain_color = stripped[2:].split('|')
-                g.terrain[stripped[0]] = (int(stripped[1]), terrain_name,
-                                          terrain_color)
+                terrain_name, terrain_color = stripped[2:].split("|")
+                g.terrain[stripped[0]] = (
+                    int(stripped[1]),
+                    terrain_name,
+                    terrain_color,
+                )
             else:
                 # read map contents
                 g.maptxt.append(stripped)
