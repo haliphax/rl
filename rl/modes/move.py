@@ -1,8 +1,8 @@
 "Character movement mode"
 
 # local
-from rl import g, t, echo
-from rl.fov import do_fov
+from .. import g, t, echo
+from ..fov import do_fov
 
 
 def move_mode():

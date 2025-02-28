@@ -4,7 +4,7 @@
 from os.path import dirname, realpath, join
 
 # local
-from rl import g
+from . import g
 
 
 def load_map(name):

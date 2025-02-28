@@ -1,7 +1,7 @@
 "Inspection mode"
 
 # local
-from rl import g, t, echo
+from .. import g, t, echo
 
 
 def inspect_mode():

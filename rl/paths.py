@@ -4,7 +4,7 @@
 from heapq import heappush, heappop
 
 # local
-from rl import g
+from . import g
 
 
 def path_heuristic(a, b):

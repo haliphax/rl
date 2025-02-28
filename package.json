@@ -16,6 +16,7 @@
 			"prettier -luw"
 		],
 		"*.py": [
+			"ruff check --fix",
 			"ruff format"
 		]
 	},

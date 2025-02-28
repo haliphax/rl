@@ -1,6 +1,6 @@
 "Field of view functions"
 
-from rl import g
+from . import g
 
 
 def do_fov():
