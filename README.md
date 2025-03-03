@@ -27,7 +27,7 @@ Install node-based developer dependencies:
 npm ci
 ```
 
-Use [`pyenv`][] or your virtual environment manager of choice to create a
+Use [`pyenv`][] (or your virtual environment manager of choice) to create a
 virtualenv with Python 3.12.1:
 
 ```shell
@@ -47,16 +47,10 @@ pip install -e .[dev]
 ### Play
 
 If you just want to run the game, you will first need Python 3.12.1. You can
-either use your system Python, create a virtual environment, or use docker.
+either create a virtual environment or use docker.
 
-<details>
-<summary>Virtual environment setup (recommended)</summary>
-
-<br />
-
-If you don't want to use your system Python installation, use [`pyenv`][] or
-your virtual environment manager of choice to create a virtualenv with Python
-3.12.1:
+Use [`pyenv`][] (or your virtual environment manager of choice) to create a
+virtualenv with Python 3.12.1:
 
 ```shell
 pyenv install 3.12.1
@@ -64,9 +58,7 @@ pyenv virtualenv 3.12 rl
 pyenv activate rl
 ```
 
-</details>
-
-For both system Python and virtual environments, you must install dependencies:
+Install dependencies:
 
 ```shell
 pip install .
@@ -92,7 +84,7 @@ code/map changes, as well.
 
 ## Execute
 
-If using a virtual environment, activate it (ex. pyenv):
+Activate your virtual environment (ex. pyenv):
 
 ```shell
 pyenv activate rl
